@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     const allowedExtensions = /png|jpeg|jpg|gif|xls|xlsx/;
 
     if (!allowedExtensions.test(extension)) throw "Unsupported extension!";
-    // if (size > 5000000) throw "File must be less than 5MB";
+    if (size > 5000000) throw "File must be less than 5MB";
 
     const md5 = file.md5;
     const URL = md5 + extension;
