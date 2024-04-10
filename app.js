@@ -86,6 +86,9 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("/", (_, res) => {
+  res.send("Home route!!!");
+});
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
