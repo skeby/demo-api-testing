@@ -1,9 +1,9 @@
-const express = require('express')
-const fs = require('fs')
-const router = express.Router()
-const path = require('path')
-const filePath = path.normalize(__dirname + '..\\..\\..\\database\\Vehicles.json')
-const vehicles = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+const express = require("express");
+const fs = require("fs");
+const router = express.Router();
+const path = require("path");
+const filePath = path.normalize(__dirname + "../../../database/Vehicles.json");
+const vehicles = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
 // Routes
 /**
@@ -17,8 +17,8 @@ const vehicles = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
  *      '401':
  *        description: Unauthorized response
  */
-router.get('/', (req, res) => {
-    res.sendData(vehicles)
-})
+router.get("/", (req, res) => {
+  res.sendData(vehicles);
+});
 
-module.exports = router
+module.exports = router;
