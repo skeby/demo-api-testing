@@ -10,7 +10,9 @@ const swaggerUi = require("swagger-ui-express");
 const customHeaders = require("./middleware/controlRespHeaders");
 const checkContentType = require("./middleware/checkContentType");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5002;
 
@@ -97,6 +99,8 @@ app.use(fileUpload());
 
 // Exclude Headers
 app.use(customHeaders);
+
+app.use("/fileuploads", express.static(path.join(__dirname, "fileuploads")));
 
 // API Members - persistence
 app.use("/api/members", createAccountLimiter, require("./routes/api/members"));

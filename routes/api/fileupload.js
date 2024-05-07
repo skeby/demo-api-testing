@@ -4,6 +4,10 @@ const util = require("util");
 const router = express.Router();
 const PORT = process.env.PORT || 5002;
 const fs = require("fs");
+const HOST =
+  process.env.NODE_ENV === "production"
+    ? "https://demo-api-testing.onrender.com"
+    : `http://localhost:${PORT}`;
 
 router.post("/", async (req, res) => {
   try {
@@ -32,13 +36,13 @@ router.post("/", async (req, res) => {
         name: cname,
         success: true,
         message: "File uploaded successfully!",
-        url: `http://localhost:${PORT}/fileuploads/` + fileName,
+        url: `${HOST}/fileuploads/` + URL,
       });
     } else {
       res.sendData({
         success: true,
         message: "File uploaded successfully!",
-        url: `http://localhost:${PORT}/fileuploads/` + fileName,
+        url: `${HOST}/fileuploads/` + URL,
       });
     }
   } catch (err) {
