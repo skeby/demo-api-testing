@@ -12,14 +12,17 @@ const HOST =
 router.post("/", async (req, res) => {
   try {
     let cname = req.body.name;
+    const extensions = req.body.extensions;
     const file = req.files.file;
     const fileName = file.name;
     const size = file.data.length;
     const extension = path.extname(fileName);
 
-    const allowedExtensions = /png|jpeg|jpg|gif|xls|xlsx/;
+    if (extensions) {
+      const allowedExtensions = new RegExp(extensions.join("|"), "i");
+      if (!allowedExtensions.test(extension)) throw "Unsupported extension!";
+    }
 
-    if (!allowedExtensions.test(extension)) throw "Unsupported extension!";
     if (size > 5000000) throw "File must be less than 5MB";
 
     const md5 = file.md5;
